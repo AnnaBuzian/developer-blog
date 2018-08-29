@@ -1,0 +1,11 @@
+App\Entity\User:
+  user_{1..10}:
+    email: 'eddeee+<current()>/@gmail.com'
+
+App\Entity\Blog:
+  blog_{1..100}:
+    title: <text(20)>
+    content: <sentence()>
+    user: "@user_*"
+    createdAt: '<dateTimeBetween("-200 days", "now")>'
+

@@ -1,0 +1,8 @@
+{% extends 'react.html.twig' %}
+
+{% block title %}Blog{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script src="{{ asset('js/react/blog.bundle.js') }}" language="javascript" type="text/javascript"></script>
+{% endblock %}

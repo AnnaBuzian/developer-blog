@@ -1,0 +1,60 @@
+<?php
+
+namespace App\GraphQL\Field;
+
+use Youshido\GraphQL\Config\Field\FieldConfig;
+use Youshido\GraphQL\Type\ListType\ListType;
+use Youshido\GraphQL\Type\Scalar\IntType;
+use Youshido\GraphQL\Execution\ResolveInfo;
+use App\GraphQL\Type\BlogType;
+use App\Entity\Blog;
+
+class AllBlogsField extends AbstractField
+{
+    const MAX_LIMIT = 10;
+
+    /**
+     * @return AbstractObjectType|AbstractType
+     */
+    public function getType()
+    {
+        return new ListType(new BlogType());
+    }
+
+    /**
+     * @param Youshido\GraphQL\Config\Field\FieldConfig $config
+     */
+    public function build(FieldConfig $config)
+    {
+        $config->addArguments(
+            [
+                'offset' => new IntType(),
+                'limit' => new IntType(),
+            ]
+        );
+    }
+
+    /**
+     * @param $value
+     * @param array                                  $args
+     * @param Youshido\GraphQL\Execution\ResolveInfo $info
+     */
+    public function resolve($value, array $args, ResolveInfo $info)
+    {
+        $result = [];
+
+        $offset = $args['offset'];
+        $limit = $args['limit'] >= $this::MAX_LIMIT ? $this::MAX_LIMIT : $args['limit'];
+
+        $em = $this->getEntityManager();
+        $qb = $em->getRepository(Blog::class)
+                 ->createQueryBuilder('blog')
+                 ->orderBy('blog.createdAt', 'DESC')
+                 ->setFirstResult($offset)
+                 ->setMaxResults($limit);
+
+        $result = $qb->getQuery()->execute();
+
+        return $result;
+    }
+}
