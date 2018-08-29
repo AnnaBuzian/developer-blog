@@ -1,0 +1,11 @@
+Query:
+  type: object
+  config:
+    description: "Posts ORM repository"
+    fields:
+      posts:
+        type: "[Post]"
+        args:
+            userId:
+                type: "ID!"
+        resolve: "@=service('app.resolver.posts').find(args)"
