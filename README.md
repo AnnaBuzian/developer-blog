@@ -1,5 +1,5 @@
 # developer-blog
-# Developer Blog - project Symfony 4 + GraphQL (PHP 7.1-FPM - NGINX - Redis - ELK)
+# Developer Blog - project Symfony 4 + GraphQL (PHP 7.1-FPM - NGINX)
 Bundle youshido/graphql-bundle is used in this project.
 
 ## Usage

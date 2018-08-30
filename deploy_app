@@ -1,12 +1,13 @@
 #!/bin/bash
 
-docker-compose exec --user=www-data -e https_proxy=$http_proxy -e http_proxy=$http_proxy php bash -c "cd server && composer install"
+docker-compose exec --user=www-data -e https_proxy=$http_proxy -e http_proxy=$http_proxy php bash -c "composer install"
 
 docker-compose exec --user=www-data -e http_proxy=$http_proxy -e http_proxy=$http_proxy php bash -c \
     "sudo chown -R www-data:www-data /home/www-data \
-    && cd client \
+    && cd ../client \
     && npm config set proxy $http_proxy \
-    && yarn install"
+    && yarn install \
+    && yarn build"
 
-docker-compose exec --user=www-data -e https_proxy=$http_proxy -e http_proxy=$http_proxy php bash -c \
-    "cd server && ./bin/console doctrine:schema:create"
+# docker-compose exec --user=www-data -e https_proxy=$http_proxy -e http_proxy=$http_proxy php bash -c \
+#     "./bin/console doctrine:schema:create && ./bin/console doctrine:fixtures:load"

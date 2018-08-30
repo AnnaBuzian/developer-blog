@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { A } from 'UI';
+import { A, H3 } from 'UI';
 import { home, blog } from 'Routes';
 import { sizes } from 'Styles/media';
 
@@ -17,10 +17,10 @@ const StyledHeaderContent = styled.div`
 const Header = () => (
   <StyledHeaderContent>
     <div>
-      <A href={home}>LOGO</A>
+        <A href={home}><H3>ПриватБанк</H3></A>
     </div>
     <div>
-      <A href={blog}>Blog</A>
+      <A href={blog}><H3>Блог</H3></A>
     </div>
   </StyledHeaderContent>
 );

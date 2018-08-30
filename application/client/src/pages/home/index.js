@@ -7,7 +7,7 @@ import { withDefaultPageWrapper } from 'HOCs';
 const HomePage = () => (
   <div>
     <ContentRow>
-      <H1>Welcome to sample blog app</H1>
+      <H1>Welcome to blog!</H1>
       <p>
         This project is built using docker with NGINX, PHP 7, Symfony 4, React 16 and GraphQL with
         Apollo
