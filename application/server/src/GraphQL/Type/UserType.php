@@ -6,6 +6,10 @@ use Youshido\GraphQL\Type\Object\AbstractObjectType;
 use Youshido\GraphQL\Type\Scalar\IdType;
 use Youshido\GraphQL\Type\Scalar\StringType;
 
+/**
+ * Class UserType
+ * @package App\GraphQL\Type
+ */
 class UserType extends AbstractObjectType
 {
     public function build($config)

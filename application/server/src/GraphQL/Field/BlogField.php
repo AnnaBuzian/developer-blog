@@ -8,10 +8,14 @@ use Youshido\GraphQL\Type\Scalar\IdType;
 use App\GraphQL\Type\BlogType;
 use App\Entity\Blog;
 
+/**
+ * Class BlogField
+ * @package App\GraphQL\Field
+ */
 class BlogField extends AbstractField
 {
     /**
-     * @return AbstractObjectType|AbstractType
+     * @return BlogType
      */
     public function getType()
     {
@@ -19,7 +23,7 @@ class BlogField extends AbstractField
     }
 
     /**
-     * @param Youshido\GraphQL\Config\Field\FieldConfig $config
+     * @param $config
      */
     public function build(FieldConfig $config)
     {
@@ -32,8 +36,9 @@ class BlogField extends AbstractField
 
     /**
      * @param $value
-     * @param array                                  $args
-     * @param Youshido\GraphQL\Execution\ResolveInfo $info
+     * @param array $args
+     * @param ResolveInfo $info
+     * @return null|object
      */
     public function resolve($value, array $args, ResolveInfo $info)
     {
