@@ -1,0 +1,6 @@
+#!/bin/bash
+set -a
+source proxy.sh
+
+docker-compose rm --stop --force
+docker-compose up -d --build
