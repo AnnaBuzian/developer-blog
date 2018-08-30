@@ -3,7 +3,7 @@ services:
   db:
     image: mysql
     volumes:
-        - ./mysql:/var/lib/mysql
+        - ./docker/db/data:/var/lib/mysql
     environment:
         MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
         MYSQL_DATABASE: ${MYSQL_DATABASE}
@@ -19,7 +19,7 @@ services:
       - db
     volumes:
       - ./application:/var/www/html/application:cached
-      - ./logs:/var/log
+      - ./docker/php/logs:/var/log
   web:
     build: docker/nginx
     restart: always
@@ -27,4 +27,4 @@ services:
         - '80:80'
     volumes:
         - ./application:/var/www/html/application:cached
-        - ./logs:/var/log/nginx
+        - ./docker/nginx/logs:/var/log/nginx
